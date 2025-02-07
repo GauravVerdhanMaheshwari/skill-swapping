@@ -1,12 +1,87 @@
 html,
 body {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: rgb(240, 186, 86) url("../image/background.png") no-repeat center
     top;
+  background-size: cover;
 }
 
 .register {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  width: 60vh;
+  padding: 60px;
+  border-radius: 10px;
+}
+
+.innerRegister {
+  display: flex;
   justify-content: center;
-  align-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.innerRegister h1 {
+  color: black;
+  font-size: 55px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-shadow: rgba(22, 22, 22, 0.281) 5px 5px 10px;
+  margin: 20px 0px 20px 0px;
+}
+
+.innerRegister label {
+  color: white;
+  font-size: 25px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.input {
+  margin: 10px 0px 10px 0px;
+  padding: 15px 10px; /* Adjusted for better spacing */
+  border-radius: 20px;
+  width: 400px;
+  height: 20px;
+  border: 2px solid black;
+  font-size: 18px;
+}
+
+.button {
+  padding: 15px;
+  font-size: 25px;
+  width: 200px;
+  color: white;
+  background-color: rgb(80, 40, 30);
+  border: 4px solid rgb(80, 40, 30);
+  border-radius: 20px;
+  box-shadow: 10px 10px 10px #16161662;
+  transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+  background-color: rgb(99, 57, 49);
+  border: 4px solid rgb(99, 57, 49);
+  box-shadow: 10px 10px 10px #1616164f;
+}
+
+.button:active {
+  background-color: rgb(100, 60, 60);
+  border: 4px solid rgb(100, 60, 60);
+  box-shadow: 10px 10px 10px #16161679;
+}
+
+.link {
+  color: white;
+  font-size: 18px;
+  text-decoration: none;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  transition: all 2s ease-in-out;
+}
+
+.link:hover {
+  text-decoration: underline;
 }
