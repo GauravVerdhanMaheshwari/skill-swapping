@@ -9,4 +9,5 @@ body {
 .register {
   justify-content: center;
   align-content: center;
+  margin: 10px;
 }
