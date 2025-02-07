@@ -2,11 +2,11 @@ html,
 body {
   margin: 0px;
   padding: 0px;
-  background: #ffffff url("../image/background.png") no-repeat center top;
+  background: rgb(240, 186, 86) url("../image/background.png") no-repeat center
+    top;
 }
 
 .register {
-  display: flex;
   justify-content: center;
-  align-items: center;
+  align-content: center;
 }
