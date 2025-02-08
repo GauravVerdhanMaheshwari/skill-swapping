@@ -50,6 +50,10 @@ body {
   font-size: 18px;
 }
 
+.input:focus {
+  border: 4px solid lightcoral;
+}
+
 .button {
   padding: 15px;
   font-size: 25px;
