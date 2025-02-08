@@ -11,7 +11,7 @@
 <body>
     <div class="register">
         <div class="innerRegister">
-            <form action="./skillSelection.html" method="post">
+            <form action="./skillSelection.php" method="post">
                 <h1 class="heading">REGISTER</h1>
                 <label for="name">User Name</label><br>
                 <input type="text" name="userName" class="input" id="userName" autocomplete="off"
@@ -26,7 +26,7 @@
                 <input type="password" name="conformPassword" class="input" id="conformPassword" autocomplete="off"
                     placeholder="Conform your password" required><br><br>
                 <input type="submit" value="Register" class="button"><br><br>
-                <a href="login.html" class="link"> Already have an account</a>
+                <a href="login.php" class="link"> Already have an account</a>
             </form>
         </div>
     </div>
