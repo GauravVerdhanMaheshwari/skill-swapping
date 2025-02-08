@@ -10,15 +10,22 @@
 
 <body>
     <div class="login">
-        <form action="home.html" method="post">
-            <label for="name">User Name</label><br>
-            <input type="text" name="userName" id="userName"><br><br>
-            <label for="password">Password</label><br>
-            <input type="password" name="password" id="password"><br><br>
-            <input type="submit" value="Login"> <br><br>
-            <a href="index.html"> Already have an account</a> <br>
-            <a href="forgetPassword.html"> Forget Password</a>
-        </form>
+        <div class="innerLogin">
+            <form action="home.html" method="post">
+                <h1 class="heading">LOGIN</h1>
+                <label for="name">User Name</label><br>
+                <input type="text" class="input" name="userName" id="userName" autocomplete="off"
+                    placeholder="Enter your username"><br><br>
+                <label for="password">Password</label><br>
+                <input type="password" class="input" name="password" id="password" autocomplete="off"
+                    placeholder="Enter your username"><br><br>
+                <input type="submit" value="Login" class="button"> <br><br>
+                <div class="linkDiv">
+                    <a href="index.html" class="link"> I don't have an account</a> <br>
+                    <a href="forgetPassword.html" class="link"> Forget Password</a>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 
