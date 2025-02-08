@@ -15,16 +15,16 @@
                 <h1 class="heading">REGISTER</h1>
                 <label for="name">User Name</label><br>
                 <input type="text" name="userName" class="input" id="userName" autocomplete="off"
-                    placeholder="Enter your username" required><br><br>
+                    placeholder="Enter your username" required minlength="5" maxlength="20"><br><br>
                 <label for="email">Email</label><br>
                 <input type="email" name="email" class="input" id="email" autocomplete="off"
                     placeholder="Enter your email" required><br><br>
                 <label for="password">Password</label><br>
                 <input type="password" name="password" class="input" id="password" autocomplete="off"
-                    placeholder="Enter your password" required><br><br>
+                    placeholder="Enter your password" required minlength="8" maxlength="20"><br><br>
                 <label for="password">Confirm Password</label><br>
                 <input type="password" name="conformPassword" class="input" id="conformPassword" autocomplete="off"
-                    placeholder="Conform your password" required><br><br>
+                    placeholder="Conform your password" required minlength="8" maxlength="20"><br><br>
                 <input type="submit" value="Register" class="button"><br><br>
                 <a href="login.php" class="link"> Already have an account</a>
             </form>
