@@ -14,24 +14,30 @@
             <form action="./skillSelection.php" method="post">
                 <h1 class="heading">REGISTER</h1>
 
-                <label for="name">User Name</label><br>
+                <br><label for="name">User Name</label><br>
                 <input type="text" name="userName" class="input" id="userName" autocomplete="off"
-                    placeholder="Enter your username" required minlength="5" maxlength="20"><br><br>
-                <p id="usernameWarning" style="color: red; display: none;"></p><br>
+                    placeholder="Enter your username" required minlength="5" maxlength="20"><br>
+                <p id="usernameWarning"
+                    style="color: red; font-weight: 500;font-size: 18px; margin:0px,0px,0px,10px; display: none;"></p>
 
-                <label for="email">Email</label><br>
+                <br><label for="email">Email</label><br>
                 <input type="email" name="email" class="input" id="email" autocomplete="off"
-                    placeholder="Enter your email" required><br><br>
+                    placeholder="Enter your email" required><br>
 
-                <label for="password">Password</label><br>
+                <br><label for="password">Password</label><br>
                 <input type="password" name="password" class="input" id="password" autocomplete="off"
-                    placeholder="Enter your password" required minlength="8" maxlength="20"><br><br>
-                <p id="passwordWarning" style="color: red; display: none;"></p><br>
+                    placeholder="Enter your password" required minlength="8" maxlength="20"><br>
+                <p id="passwordWarning"
+                    style="color: red; font-weight: 500;font-size: 18px; margin:0px,0px,0px,10px; display: none;"></p>
 
-                <label for="password">Confirm Password</label><br>
-                <input type="password" name="conformPassword" class="input" id="conformPassword" autocomplete="off"
-                    placeholder="Conform your password" required minlength="8" maxlength="20"><br><br>
-                <input type="submit" value="Register" class="button"><br><br>
+                <br><label for="password">Confirm Password</label><br>
+                <input type="password" name="confirmPassword" class="input" id="confirmPassword" autocomplete="off"
+                    placeholder="Confirm your password" required minlength="8" maxlength="20">
+                <p id="confirmPasswordWarning"
+                    style="color: red; font-weight: 500;font-size: 18px; margin:0px,0px,0px,10px; display: none;">
+                </p>
+
+                <br><br><br><input type="submit" value="Register" class="button"><br><br>
 
                 <a href="login.php" class="link"> Already have an account</a>
             </form>
@@ -45,7 +51,6 @@
     {
         const usernameField = document.getElementById("userName");
         const usernameWarning = document.getElementById("usernameWarning");
-        const registerForm = document.getElementById("registerForm");
 
         function validateUsername() {
             const usernameLength = usernameField.value.trim().length;
@@ -66,28 +71,51 @@
     }
 
     //password
-    {
-        const passwordField = document.getElementById("password");
-        const passwordWarning = document.getElementById("passwordWarning");
-        const registerForm = document.getElementById("registerForm");
 
-        function validateUsername() {
-            const usernameLength = usernameField.value.trim().length;
+    const passwordField = document.getElementById("password");
+    const passwordWarning = document.getElementById("passwordWarning");
+    let password;
 
-            if (usernameLength < 5 || usernameLength > 20) {
-                usernameWarning.innerText = "Username must be between 5 and 20 characters.";
-                usernameWarning.style.display = "block";
-                return false;
-            } else {
-                usernameWarning.style.display = "none";
-                return true;
-            }
+    function validatePassword() {
+        const passwordLength = passwordField.value.trim().length;
+
+        if (passwordLength < 5 || passwordLength > 20) {
+            passwordWarning.innerText = "Password must be between 5 and 20 characters.";
+            passwordWarning.style.display = "block";
+            return false;
+        } else {
+            passwordWarning.style.display = "none";
+            password = passwordField.value;
+            return true;
         }
-
-        // Validate username on typing and when leaving the field
-        usernameField.addEventListener("keyup", validateUsername);
-        usernameField.addEventListener("blur", validateUsername);
     }
+
+    // Validate Password on typing and when leaving the field
+    passwordField.addEventListener("keyup", validatePassword);
+    passwordField.addEventListener("blur", validatePassword);
+
+    //confirm password 
+    const ConfirmPasswordField = document.getElementById("confirmPassword");
+    const confirmPasswordWarning = document.getElementById("confirmPasswordWarning");
+    let confirmPassword;
+
+    function validateConfirmPassword() {
+        const passwordLength = ConfirmPasswordField.value.trim().length;
+
+        if (confirmPassword !== password) {
+            confirmPasswordWarning.innerText = "The password is not same as the given password";
+            confirmPasswordWarning.style.display = "block";
+            return false;
+        } else {
+            confirmPasswordWarning.style.display = "none";
+            password = ConfirmPasswordField.value;
+            return true;
+        }
+    }
+
+    // Validate username on typing and when leaving the field
+    ConfirmPasswordField.addEventListener("keyup", validateConfirmPassword);
+    ConfirmPasswordField.addEventListener("blur", validateConfirmPassword);
 
 </script>
 
