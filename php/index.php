@@ -11,116 +11,123 @@
 <body>
     <div class="register">
         <div class="innerRegister">
-            <form action="./skillSelection.php" method="post">
+            <form action="" method="post">
                 <h1 class="heading">REGISTER</h1>
 
-                <br><label for="name">User Name</label><br>
+                <label for="userName">User Name</label><br>
                 <input type="text" name="userName" class="input" id="userName" autocomplete="off"
-                    placeholder="Enter your username" required minlength="5" maxlength="20"><br>
-                <p id="usernameWarning"
-                    style="color: red; font-weight: 500;font-size: 18px; margin:0px,0px,0px,10px; display: none;"></p>
+                    placeholder="Enter your username" required minlength="5" maxlength="10"><br>
+                <p id="usernameWarning" class="warning"></p>
 
-                <br><label for="email">Email</label><br>
+                <label for="email">Email</label><br>
                 <input type="email" name="email" class="input" id="email" autocomplete="off"
-                    placeholder="Enter your email" required><br>
+                    placeholder="Enter your email" required maxlength="50"><br>
 
-                <br><label for="password">Password</label><br>
+                <label for="password">Password</label><br>
                 <input type="password" name="password" class="input" id="password" autocomplete="off"
-                    placeholder="Enter your password" required minlength="8" maxlength="20"><br>
-                <p id="passwordWarning"
-                    style="color: red; font-weight: 500;font-size: 18px; margin:0px,0px,0px,10px; display: none;"></p>
+                    placeholder="Enter your password" required minlength="8" maxlength="10"><br>
+                <p id="passwordWarning" class="warning"></p>
 
-                <br><label for="password">Confirm Password</label><br>
+                <label for="confirmPassword">Confirm Password</label><br>
                 <input type="password" name="confirmPassword" class="input" id="confirmPassword" autocomplete="off"
-                    placeholder="Confirm your password" required minlength="8" maxlength="20">
-                <p id="confirmPasswordWarning"
-                    style="color: red; font-weight: 500;font-size: 18px; margin:0px,0px,0px,10px; display: none;">
-                </p>
+                    placeholder="Confirm your password" required minlength="8" maxlength="10"><br>
+                <p id="confirmPasswordWarning" class="warning"></p>
 
-                <br><br><br><input type="submit" value="Register" class="button"><br><br>
-
-                <a href="login.php" class="link"> Already have an account</a>
+                <br><input type="submit" value="Register" name="register" class="button"><br><br>
+                <a href="login.php" class="link">Already have an account?</a>
             </form>
         </div>
     </div>
 </body>
 
 <script>
-
-    //username 
-    {
-        const usernameField = document.getElementById("userName");
-        const usernameWarning = document.getElementById("usernameWarning");
-
-        function validateUsername() {
-            const usernameLength = usernameField.value.trim().length;
-
-            if (usernameLength < 5 || usernameLength > 20) {
-                usernameWarning.innerText = "Username must be between 5 and 20 characters.";
-                usernameWarning.style.display = "block";
-                return false;
-            } else {
-                usernameWarning.style.display = "none";
-                return true;
-            }
+    // Username Validation
+    document.getElementById("userName").addEventListener("input", function () {
+        let usernameWarning = document.getElementById("usernameWarning");
+        if (this.value.length < 5 || this.value.length > 10) {
+            usernameWarning.innerText = "Username must be between 5 and 10 characters.";
+            usernameWarning.style.display = "block";
+        } else {
+            usernameWarning.style.display = "none";
         }
+    });
 
-        // Validate username on typing and when leaving the field
-        usernameField.addEventListener("keyup", validateUsername);
-        usernameField.addEventListener("blur", validateUsername);
-    }
-
-    //password
-
-    const passwordField = document.getElementById("password");
-    const passwordWarning = document.getElementById("passwordWarning");
-    let password;
-
-    function validatePassword() {
-        const passwordLength = passwordField.value.trim().length;
-
-        if (passwordLength < 5 || passwordLength > 20) {
-            passwordWarning.innerText = "Password must be between 5 and 20 characters.";
+    // Password Validation
+    document.getElementById("password").addEventListener("input", function () {
+        let passwordWarning = document.getElementById("passwordWarning");
+        if (this.value.length < 8 || this.value.length > 10) {
+            passwordWarning.innerText = "Password must be between 8 and 10 characters.";
             passwordWarning.style.display = "block";
-            return false;
         } else {
             passwordWarning.style.display = "none";
-            password = passwordField.value;
-            return true;
         }
-    }
+    });
 
-    // Validate Password on typing and when leaving the field
-    passwordField.addEventListener("keyup", validatePassword);
-    passwordField.addEventListener("blur", validatePassword);
-
-    //confirm password 
-    const ConfirmPasswordField = document.getElementById("confirmPassword");
-    const confirmPasswordWarning = document.getElementById("confirmPasswordWarning");
-    let confirmPassword;
-
-    function validateConfirmPassword() {
-        const passwordLength = ConfirmPasswordField.value.trim().length;
-
-        if (confirmPassword !== password) {
-            confirmPasswordWarning.innerText = "The password is not same as the given password";
+    // Confirm Password Validation
+    document.getElementById("confirmPassword").addEventListener("input", function () {
+        let confirmPasswordWarning = document.getElementById("confirmPasswordWarning");
+        if (this.value !== document.getElementById("password").value) {
+            confirmPasswordWarning.innerText = "Passwords do not match.";
             confirmPasswordWarning.style.display = "block";
-            return false;
         } else {
             confirmPasswordWarning.style.display = "none";
-            password = ConfirmPasswordField.value;
-            return true;
         }
-    }
-
-    // Validate username on typing and when leaving the field
-    ConfirmPasswordField.addEventListener("keyup", validateConfirmPassword);
-    ConfirmPasswordField.addEventListener("blur", validateConfirmPassword);
-
+    });
 </script>
 
-<?php
+<style>
+    .warning {
+        color: red;
+        font-weight: 500;
+        font-size: 14px;
+        display: none;
+    }
+</style>
 
+<?php
+// Database connection
+$host = "localhost";
+$username = "root";
+$password = "";
+$db = "skill_swapping";
+
+$connect = mysqli_connect($host, $username, $password, $db);
+
+// Check connection
+if (!$connect) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Handle form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
+    $name = mysqli_real_escape_string($connect, $_POST["userName"]);
+    $email = mysqli_real_escape_string($connect, $_POST["email"]);
+    $password = mysqli_real_escape_string($connect, $_POST["password"]);
+    $confirmPassword = mysqli_real_escape_string($connect, $_POST["confirmPassword"]);
+    $logs = date("Y-m-d H:i:s"); // Store timestamp
+
+    // Check if passwords match
+    if ($password !== $confirmPassword) {
+        echo "<script>alert('Passwords do not match.');</script>";
+    } else {
+        // Check if email already exists
+        $checkEmail = "SELECT * FROM user WHERE email='$email'";
+        $result = mysqli_query($connect, $checkEmail);
+
+        if (mysqli_num_rows($result) > 0) {
+            echo "<script>alert('Email already exists. Please use another email.');</script>";
+        } else {
+            // Insert data into the database
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $query = "INSERT INTO user (Name, Email, Password, Logs) VALUES ('$name', '$email', '$hashedPassword', '$logs')";
+            if (mysqli_query($connect, $query)) {
+                echo "<script>alert('Registration successful! Redirecting to login page.'); window.location.href='login.php';</script>";
+            } else {
+                echo "<script>alert('Error: " . mysqli_error($connect) . "');</script>";
+            }
+        }
+    }
+}
 ?>
 
 </html>
