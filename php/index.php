@@ -86,39 +86,39 @@ $connect = mysqli_connect($host, $username, $password, $db);
 
 // Check connection
 if (!$connect) {
-    die("Connection failed: " . mysqli_connect_error());
+    die("Connection failed: ");
 }
 
 // Handle form submission
-//if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
-$name = mysqli_real_escape_string($connect, $_POST["userName"]);
-$email = mysqli_real_escape_string($connect, $_POST["email"]);
-$password = mysqli_real_escape_string($connect, $_POST["password"]);
-$confirmPassword = mysqli_real_escape_string($connect, $_POST["confirmPassword"]);
-$logs = date("Y-m-d H:i:s"); // Store timestamp
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
+    $name = mysqli_real_escape_string($connect, $_POST["userName"]);
+    $email = mysqli_real_escape_string($connect, $_POST["email"]);
+    $password = mysqli_real_escape_string($connect, $_POST["password"]);
+    $confirmPassword = mysqli_real_escape_string($connect, $_POST["confirmPassword"]);
+    $logs = date("Y-m-d H:i:s"); // Store timestamp
 
-// Check if passwords match
-if ($password !== $confirmPassword) {
-    echo "<script>alert('Passwords do not match.');</script>";
-} else {
-    // Check if email already exists
-    $checkEmail = "SELECT * FROM user WHERE email='$email'";
-    $result = mysqli_query($connect, $checkEmail);
-
-    if (mysqli_num_rows($result) > 0) {
-        echo "<script>alert('Email already exists. Please use another email.');</script>";
+    // Check if passwords match
+    if ($password !== $confirmPassword) {
+        echo "<script>alert('Passwords do not match.');</script>";
     } else {
-        // Insert data into the database
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $query = "INSERT INTO user (Name, Email, Password, Logs) VALUES ('$name', '$email', '$hashedPassword', '$logs')";
-        if (mysqli_query($connect, $query)) {
-            echo "<script> window.location.href='login.php';</script>";
+        // Check if email already exists
+        $checkEmail = "SELECT * FROM user WHERE email='$email'";
+        $result = mysqli_query($connect, $checkEmail);
+
+        if (mysqli_num_rows($result) > 0) {
+            echo "<script>alert('Email already exists. Please use another email.');</script>";
         } else {
-            echo "<script>alert('Error: " . mysqli_error($connect) . "');</script>";
+            // Insert data into the database
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            $query = "INSERT INTO user (Name, Email, Password, Logs) VALUES ('$name', '$email', '$hashedPassword', '$logs')";
+            if (mysqli_query($connect, $query)) {
+                echo "<script> window.location.href='login.php';</script>";
+            } else {
+                echo "<script>alert('Error!');</script>";
+            }
         }
     }
 }
-// }
 ?>
 
 </html>
