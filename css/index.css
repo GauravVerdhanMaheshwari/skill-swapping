@@ -89,3 +89,10 @@ body {
 .link:hover {
   text-decoration: underline;
 }
+
+.warning {
+  color: red;
+  font-weight: 500;
+  font-size: 14px;
+  display: none;
+}
