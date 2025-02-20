@@ -33,7 +33,7 @@
 
 </html>
 
-<script>
+<!-- <script>
 
     document.getElementById("password").addEventListener("input", function () {
         let passwordWarning = document.getElementById("passwordWarning");
@@ -45,7 +45,7 @@
         }
     });
 
-</script>
+</script> -->
 
 <?php
 $host = "localhost";
@@ -65,17 +65,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["Login"])) {
     $name = mysqli_real_escape_string($connect, $_POST["userName"]);
     $password = $_POST["password"]; // No need to escape, it's used in password_verify
 
-    // Query to fetch the hashed password from database
-    $checkName = "SELECT Password FROM user WHERE Name='$name'";
+    // Fetch UID and Hashed Password from database
+    $checkName = "SELECT UID, Password FROM user WHERE Name='$name'";
     $result = mysqli_query($connect, $checkName);
 
     if ($result && mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
+        $uid = $row['UID'];
         $hash = $row['Password']; // Get stored hashed password
 
         if (password_verify($password, $hash)) {
-            echo "<script>window.location.href='home.php';</script>";
-            exit;
+            $date = date("Y-m-d H:i:s");
+            $what = "LOGGED IN";
+            $log = $date . " " . $what;
+
+            // Insert log
+            $query = "INSERT INTO LOGS (Log, Time, What, UID) VALUES ('$log','$date','$what','$uid')";
+            if (mysqli_query($connect, $query)) {
+                echo "<script>window.location.href='home.php';</script>";
+                exit;
+            } else {
+                echo "<script>alert('Error logging activity.');</script>";
+            }
         } else {
             echo "<script>alert('Incorrect Password!');</script>";
         }
