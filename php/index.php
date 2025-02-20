@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             $query = "INSERT INTO user (Name, Email, Password, Logs) VALUES ('$name', '$email', '$hashedPassword', '$logs')";
             if (mysqli_query($connect, $query)) {
-                echo "<script> window.location.href='login.php';</script>";
+                echo "<script> window.location.href='skillSelection.php';</script>";
             } else {
                 echo "<script>alert('Error!');</script>";
             }
