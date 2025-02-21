@@ -45,7 +45,7 @@
     document.getElementById("userName").addEventListener("input", function () {
         let usernameWarning = document.getElementById("usernameWarning");
         if (this.value.length < 5) {
-            usernameWarning.innerText = "Username must be more than 5 characters long.";
+            usernameWarning.innerText = "(Username must be more than 5 characters long.)";
             usernameWarning.style.display = "block";
         } else {
             usernameWarning.style.display = "none";
@@ -56,7 +56,7 @@
     document.getElementById("password").addEventListener("input", function () {
         let passwordWarning = document.getElementById("passwordWarning");
         if (this.value.length < 8) {
-            passwordWarning.innerText = "Password must be 8 characters long.";
+            passwordWarning.innerText = "(Password must be 8 characters long.)";
             passwordWarning.style.display = "block";
         } else {
             passwordWarning.style.display = "none";
@@ -67,7 +67,7 @@
     document.getElementById("confirmPassword").addEventListener("input", function () {
         let confirmPasswordWarning = document.getElementById("confirmPasswordWarning");
         if (this.value !== document.getElementById("password").value) {
-            confirmPasswordWarning.innerText = "Passwords do not match.";
+            confirmPasswordWarning.innerText = "(Passwords do not match.)";
             confirmPasswordWarning.style.display = "block";
         } else {
             confirmPasswordWarning.style.display = "none";
