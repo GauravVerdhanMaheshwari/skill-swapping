@@ -8,4 +8,72 @@ body {
   align-items: center;
   background: rgb(5, 5, 5);
 }
+.login{
+  width: 100%;
+  height: 600px;
+  padding: 0px 80px;
+  border: 2px solid lightblue;
+  box-shadow: 1px 1px 20px rgb(128, 202, 226);
+  border-radius: 50px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 
+.title {
+  color: black;
+  font-size: 55px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-shadow: rgba(22, 22, 22, 0.281) 5px 5px 10px;
+  margin: 10px 0px 10px 0px;
+}
+
+.input{
+  margin: 10px 0px 10px 0px;
+  padding: 15px 10px; /* Adjusted for better spacing */
+  border-radius: 20px;
+  width: 400px;
+  height: 20px;
+  border: 2px solid black;
+  font-size: 18px;
+}
+
+.input:focus {
+  border: 4px solid lightblue;
+}
+
+label{  
+  text-align: left;
+  padding-left: 1%;
+  color: black;
+  font-size: 25px;
+  margin: 0px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.button {
+  padding: 15px;
+  font-size: 25px;
+  margin: 0px 0px 20px 0px;
+  width: 100%;
+  color: white;
+  background-color: rgb(100, 200, 100);
+  border: 4px solid rgb(100, 200, 100);
+  border-radius: 20px;
+  box-shadow: 10px 10px 10px #16161662;
+  transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+  background-color: rgb(100, 230, 100);
+  border: 4px solid rgb(100, 230, 100);
+  box-shadow: 10px 10px 10px #1616164f;
+}
+
+.button:active {
+  background-color: rgb(100, 180, 100);
+  border: 4px solid rgb(100, 180, 100);
+  box-shadow: 10px 10px 10px #16161679;
+}
