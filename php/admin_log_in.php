@@ -12,7 +12,7 @@
     <div class="login">
         <div class="innerLogin">
             <h1 class="title">Admin Login</h1><br>
-            <form action="admin_panel.php" method="post">
+            <form action=" " method="post">
                 <label for="adminName">Name</label><br>
                 <input type="text" name="admin" id="admin" class="input" placeholder="Enter your name" required><br><br>
                 <label for="email">Email</label><br>
@@ -30,56 +30,37 @@
 </html>
 
 
-<?php 
-
-$host = "localhost";
-$username = "root";
-$password = "";
-$db = "skill_swapping";
-
-// Create connection
-$connect = mysqli_connect($host, $username, $password, $db);
-
-// Check connection
-if (!$connect) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
+<?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = mysqli_real_escape_string($connect, $_POST["admin"]);
-    $email = mysqli_real_escape_string($connect, $_POST["email"]);
-    $password = mysqli_real_escape_string($connect, $_POST["password"]);
+    if (!isset($_POST["password"]) || empty($_POST["password"])) {
+        die("Password field is missing or empty.");
+    }
 
-    $checkAdmin = "SELECT * FROM admin WHERE Name='$name'";
+    $adminPassword = mysqli_real_escape_string($connect, $_POST["password"]);
+
+    // Fetch admin details
+    $checkAdmin = "SELECT * FROM admin WHERE Name='$name' AND email='$email'";
     $result = mysqli_query($connect, $checkAdmin);
 
-    if($result && mysqli_num_rows($result) === 1) {
+    if ($result && mysqli_num_rows($result) === 1) {
         $row = mysqli_fetch_assoc($result);
-        $hash = $row["password"]; // Missing semicolon fixed
+        $hashedPassword = $row["password"]; // Stored hashed password in DB
 
-        if (password_verify($password, $hash)) {
-            $admin = $row["name"];
-            $adminEmail = $row['email'];
-            $aid = $row['aid'];
+        // Verify hashed password
+        if (password_verify($adminPassword, $hashedPassword)) {
+            session_start();
+            $_SESSION["admin_id"] = $row["aid"];
+            $_SESSION["admin_name"] = $row["name"];
+            $_SESSION["admin_email"] = $row["email"];
 
-            if($admin === $name && $email === $adminEmail) {
-                $date = date("Y-m-d H:i:s");
-                $what = "LOGGED IN";
-                $log = $date . " " . $what;
-
-                $query = "INSERT INTO admin_logs (Log, Time, What, AID) VALUES ('$log', '$date', '$what', '$aid')";
-                if (mysqli_query($connect, $query)) {
-                    echo "<script>window.location.href='home.php';</script>";
-                    exit;
-                } else {
-                    echo "<script>alert('Error logging activity.');</script>";
-                }
-            }
+            echo "<script>window.location.href='admin_panel.php';</script>";
+            exit;
         } else {
-            echo "<script>alert('Invalid credentials.');</script>";
+            echo "<script>alert('Invalid password.');</script>";
         }
     } else {
         echo "<script>alert('Admin not found.');</script>";
     }
 }
+
 ?>
