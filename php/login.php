@@ -67,6 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["Login"])) {
 
     if ($name === "allCats" || $password === "areCoolAF") {
         echo "<script>window.location.href='easter.html';</script>";
+        exit;
     } else {
         // Fetch UID and Hashed Password from database
         $checkName = "SELECT UID, Password FROM user WHERE Name='$name'";
