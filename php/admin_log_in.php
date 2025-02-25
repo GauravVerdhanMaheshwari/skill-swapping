@@ -12,8 +12,8 @@
     <div class="login">
         <div class="innerLogin">
             <h1 class="title">Admin Login</h1><br>
-            <form action=" " method="post">
-                <label for="adminName">Name</label><br>
+            <form action="" method="post">
+                <label for="admin">Name</label><br>
                 <input type="text" name="admin" id="admin" class="input" placeholder="Enter your name" required><br><br>
                 <label for="email">Email</label><br>
                 <input type="email" name="email" id="email" class="input" placeholder="Enter your email"
@@ -21,7 +21,7 @@
                 <label for="password">Password</label><br>
                 <input type="password" name="password" id="password" class="input" placeholder="Enter your password"
                     required><br><br><br>
-                <input type="submit" value="Login" class="button">
+                <input type="submit" name="Login" value="Login" class="button">
             </form>
         </div>
     </div>
@@ -31,35 +31,46 @@
 
 
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (!isset($_POST["password"]) || empty($_POST["password"])) {
-        die("Password field is missing or empty.");
-    }
 
-    $adminPassword = mysqli_real_escape_string($connect, $_POST["password"]);
+$host = "localhost";
+$username = "root";
+$password = "";
+$db = "skill_swapping";
+$connect = mysqli_connect($host, $username, $password, $db);
+if (!$connect) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
-    // Fetch admin details
-    $checkAdmin = "SELECT * FROM admin WHERE Name='$name' AND email='$email'";
-    $result = mysqli_query($connect, $checkAdmin);
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["Login"])) {
+    $name = mysqli_real_escape_string($connect, $_POST["admin"]);
+    $email = mysqli_real_escape_string($connect, $_POST["email"]);
+    $password = mysqli_real_escape_string($connect, $_POST["password"]);
+
+    $check = "SELECT AID,Name, Email ,Password FROM admin WHERE Name='$name' AND Email='$email' ";
+    $result = mysqli_query($connect, $check);
 
     if ($result && mysqli_num_rows($result) === 1) {
         $row = mysqli_fetch_assoc($result);
-        $hashedPassword = $row["password"]; // Stored hashed password in DB
+        $aid = $row['AID'];
+        $hash = $row['Password'];
 
-        // Verify hashed password
-        if (password_verify($adminPassword, $hashedPassword)) {
-            session_start();
-            $_SESSION["admin_id"] = $row["aid"];
-            $_SESSION["admin_name"] = $row["name"];
-            $_SESSION["admin_email"] = $row["email"];
+        if (password_verify($password, $hash)) {
+            $date = date("Y-m-d H:i:s");
+            $what = "LOGGED IN";
+            $log = $date . " " . $what;
 
-            echo "<script>window.location.href='admin_panel.php';</script>";
-            exit;
+            $query = "INSERT INTO admin_logs (Log, Time, What, AID) VALUES ('$log','$date','$what','$aid')";
+            if (mysqli_query($connect, $query)) {
+                echo "<script>window.location.href='admin_dash.php';</script>";
+                exit;
+            } else {
+                echo "<script>alert('Error logging activity.');</script>";
+            }
         } else {
-            echo "<script>alert('Invalid password.');</script>";
+            echo "<script>alert('Incorrect Password!');</script>";
         }
     } else {
-        echo "<script>alert('Admin not found.');</script>";
+        echo "<script>alert('Wrong username or email.');</script>";
     }
 }
 
