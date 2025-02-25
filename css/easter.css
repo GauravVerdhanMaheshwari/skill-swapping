@@ -35,11 +35,15 @@ html {
 .trustMe:hover {
   background-color: #ad71d3;
   border: 2px solid #ad71d3;
-  box-shadow: #ad71d3 1px 1px 100px;
+  box-shadow: #ad71d3 1px 1px 110px;
+  font-size: 24px;
+  padding: 22px 30px;
 }
 
 .trustMe:active {
   background-color: #a04bd4;
   border: 2px solid #a04bd4;
-  box-shadow: #a04bd4 1px 1px 100px;
+  box-shadow: #a04bd4 1px 1px 90px;
+  font-size: 24px;
+  padding: 20px 28px;
 }
