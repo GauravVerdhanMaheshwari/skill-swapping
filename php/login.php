@@ -33,19 +33,6 @@
 
 </html>
 
-<!-- <script>
-
-    document.getElementById("password").addEventListener("input", function () {
-        let passwordWarning = document.getElementById("passwordWarning");
-        if (this.value.length > 8) {
-            passwordWarning.innerText = "Password must be 8 characters long.";
-            passwordWarning.style.display = "block";
-        } else {
-            passwordWarning.style.display = "none";
-        }
-    });
-
-</script> -->
 
 <?php
 $host = "localhost";
