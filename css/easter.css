@@ -30,6 +30,7 @@ html {
   border-radius: 10px;
   border: 2px solid #ad68d9;
   box-shadow: #ad68d9 1px 1px 100px;
+  transition: all 0.2s ease-in-out;
 }
 
 .trustMe:hover {
@@ -44,6 +45,6 @@ html {
   background-color: #a04bd4;
   border: 2px solid #a04bd4;
   box-shadow: #a04bd4 1px 1px 90px;
-  font-size: 24px;
-  padding: 20px 28px;
+  font-size: 22px;
+  padding: 19px 27px;
 }
