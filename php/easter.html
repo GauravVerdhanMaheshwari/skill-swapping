@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSFW</title>
+    <link rel="stylesheet" href="../css/easter.css">
+</head>
+
+<body>
+    <button class="trustMe">Trust Me</button>
+    <div class="videoContainer"></div>
+
+    <script>
+        let video = Math.floor(((Math.random() * 10) % 5) + 1);
+        let button = document.querySelector(".trustMe");
+
+        button.addEventListener("click", function () {
+            button.remove();
+
+            document.querySelector(".videoContainer").innerHTML = `
+            <center>
+                <video class="video" width="30%" autoplay loop >
+                    <source src="../image/${video}.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </center>`
+        });
+
+        console.log(video);
+    </script>
+</body>
+
+</html>
