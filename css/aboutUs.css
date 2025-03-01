@@ -1,7 +1,10 @@
 body,
 html {
-  margin: 0%;
-  padding: 0%;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
   background: rgb(240, 186, 86) url("../image/background.png") no-repeat center
     top;
   background-size: cover;
@@ -44,7 +47,7 @@ html {
   font-weight: 700;
 }
 
-.innerHead input {
+/* .innerHead input {
   margin: auto 0px;
   padding: 0px 10px;
   border-left: none;
@@ -68,7 +71,7 @@ html {
   border-radius: 20px 0px 0px 20px;
   width: 20px;
   background-color: white;
-}
+} */
 
 .person {
   margin: 0px 2% 0px 2%;
@@ -83,7 +86,18 @@ html {
 .person {
   display: flex;
   flex-direction: column;
-  width: 14%;
+  width: 100%;
+  align-items: center;
+  align-content: center;
+  padding: 0px 10px;
+}
+
+.name {
+  text-align: center;
+  color: aliceblue;
+  font-size: 28px;
+  font-weight: 300;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .link {
@@ -91,7 +105,23 @@ html {
 }
 
 .image {
-  width: 100%;
   border-radius: 20px;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.13);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.1s ease-in-out;
+}
+
+.image:hover {
+  border-radius: 30px;
+  box-shadow: 4px 4px 30px rgba(0, 0, 0, 0.6);
+}
+
+#GauravImage {
+  width: 100%;
+  height: 100%;
+}
+
+#AryaImage {
+  margin-left: 5%;
+  width: 90%;
+  height: 100%;
 }

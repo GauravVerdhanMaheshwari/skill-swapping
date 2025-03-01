@@ -20,13 +20,15 @@
     <div class="team">
         <div class="person">
             <a href="http://www.linkedin.com/in/gauravverdhanmaheshwari" class="link">
-                <img src="../image/Gaurav.jpeg" alt="Gaurav" class="image">
+                <img src="../image/Gaurav.jpeg" alt="Gaurav" id="GauravImage" class="image">
             </a>
             <h3 class="name">Gaurav Verdhan Maheswari</h3>
         </div>
         <div class="person">
-            <img src="../image/Gaurav.png" alt="Arya">
-            <h3 class="name">Arya</h3>
+            <a href="https://www.instagram.com/arya_makadia" class="link">
+                <img src="../image/Arya.jpeg" alt="Arya" id="AryaImage" class="image" width="200px">
+            </a>
+            <h3 class="name">Makadia Arya</h3>
         </div>
         <div class="person">
             <img src="../image/Gaurav.png" alt="Chintan">
