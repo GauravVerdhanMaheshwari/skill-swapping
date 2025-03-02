@@ -9,7 +9,7 @@ $connect = mysqli_connect($host, $username, $password, $db);
 
 function printCourse()
 {
-    
+
 }
 
 ?>
@@ -37,9 +37,6 @@ function printCourse()
 </body>
 
 </html>
-
-
-
 
 <script>
     let search = document.getElementById(courseSearch);
