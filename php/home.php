@@ -7,9 +7,11 @@ $db = "skill_swapping";
 
 $connect = mysqli_connect($host, $username, $password, $db);
 
-function printCourse()
-{
+session_start();
 
+if ($_SESSION["login"] == false) {
+    echo "<script>window.location.href='login.php';</script>";
+    exit;
 }
 
 ?>
@@ -22,33 +24,39 @@ function printCourse()
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/common.css">
 </head>
 
 <body>
-    <header class="head">
-        <a href="home.php" class="logo"><img src="../image/skillSwapping.png"></a>
-        <div class="innerHead">
-            <a href="courses.php">Courses</a>
-            <a href="aboutUs.php">About Us</a>
-            <img src="../image/search.png" class="searchImg"><input type="text" name="courseSearch" id="courseSearch">
-        </div>
-        <a href="userProfile.php" class="profilePictureLink"><img src="../image/user.png" class="profilePicture"></a>
-    </header>
+    <?php
+    include 'header.php';
+    customHeader();
+    ?>
+    <div class="title">
+        <p class="titleText">Welcome to Skill Swapping Platform</p>
+    </div>
+    <div class="course">
+        <?php
+        $query = "SELECT Cid,Title,Description FROM courses";
+        $result = mysqli_query($connect, $query);
+        if (!$result) {
+            echo "Error: <br>" . mysqli_error($connect);
+        } elseif (mysqli_num_rows($result) <= 0) {
+            echo "<p class = 'noCourses'>No courses available</p>";
+        } else {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $courseName = $row["Title"];
+                $courseDescription = $row["Description"];
+                $courseID = $row["CID"];
+                echo "<div class='courseDiv'>";
+                echo "<p class='courseName'>$courseName</p>";
+                echo "<p class='courseDescription'>$courseDescription</p>";
+                echo "<a href='courseDetails.php?courseID=$courseID' class='courseLink'>View Details</a>";
+                echo "</div>";
+            }
+        }
+        ?>
+    </div>
 </body>
 
 </html>
-
-<script>
-    let search = document.getElementById(courseSearch);
-    search.addEventListener("focus", () => {
-        if (search.innerText = "") {
-            <?php
-
-            ?>
-        } else {
-            <?php
-
-            ?>
-        }
-    })
-</script>
