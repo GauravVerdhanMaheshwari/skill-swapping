@@ -1,39 +1,72 @@
-/* Team Grid */
-.team {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 30px;
-  justify-content: center;
+.title {
+  text-align: center;
 }
 
-/* Person Card */
-.person {
+.team {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-around;
+  margin: 20px 0px;
 }
 
-/* Image Container to Ensure Uniform Size */
-.image {
-  width: 150px; /* Fixed width */
-  height: 150px; /* Fixed height */
-  aspect-ratio: 1/1; /* Ensures a perfect square */
-  object-fit: cover; /* Crop excess parts while keeping aspect ratio */
+.person {
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+}
+
+.imageDiv img {
+  border-radius: 10%;
+  margin: 20% 0px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px 20px;
+  margin: 0px 20px;
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: 20px;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
-  transition: all 0.2s ease-in-out;
+  text-align: left;
+  text-align: center;
+  width: 100%;
 }
 
-/* Hover Effect */
-.image:hover {
-  transform: scale(1.05);
-  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.6);
-}
-
-/* Name Styling */
 .name {
-  margin-top: 10px;
-  font-size: 20px;
-  color: #fff;
-  font-weight: 600;
+  font-size: 32px;
+  font-weight: 800;
+  margin: 10px 10px;
+}
+
+.hobby {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 10px 10px;
+  display: inline-block;
+  text-align: center;
+}
+
+.hobbiesList {
+  margin: 0px;
+}
+
+.hobbies {
+  font-size: 25px;
+  margin: 0px;
+  font-weight: 800;
+}
+
+.favoriteQuote {
+  font-size: 25px;
+  font-weight: 800;
+  margin: 0px 10px;
+}
+
+.quote {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0px 10px;
+  font-style: italic;
+  text-align: center;
 }
