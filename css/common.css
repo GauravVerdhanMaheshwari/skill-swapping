@@ -1,0 +1,77 @@
+body,
+html {
+  margin: 0%;
+  padding: 0%;
+  background: rgb(240, 186, 86) url("../image/background.png") no-repeat center
+    top;
+  background-size: cover;
+  height: 100vh;
+}
+
+.head {
+  font-size: 19px;
+  padding: 1.5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 0px 0px 10px 10px;
+}
+
+.profilePictureLink,
+.profilePicture {
+  width: 48px;
+  margin: auto 0px;
+  padding-right: 20px;
+}
+
+.logo {
+  margin: auto 0px;
+  padding-left: 20px;
+}
+
+.innerHead {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.innerHead a {
+  margin: 30px 0px;
+  padding: 0px 10px;
+  color: black;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 21px;
+  transition: all 0.25s ease-in-out;
+}
+
+.innerHead a:hover {
+  color: white;
+}
+
+.innerHead input {
+  margin: auto 0px;
+  padding: 0px 10px;
+  border-left: none;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  border-radius: 0px 20px 20px 0px;
+  font-size: 19px;
+  height: 24px;
+}
+
+.innerHead img {
+  padding: 2px 0px 2px 4px;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10px;
+  border-right: none;
+  border-left: 1px solid black;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  border-radius: 20px 0px 0px 20px;
+  width: 20px;
+  background-color: white;
+}
