@@ -48,6 +48,10 @@ if (!$connect) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
+session_start();
+
+$_SESSION["login"] = false;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["Login"])) {
     $name = mysqli_real_escape_string($connect, $_POST["userName"]);
     $password = $_POST["password"]; // No need to escape, it's used in password_verify
@@ -68,11 +72,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["Login"])) {
                 $date = date("Y-m-d H:i:s");
                 $what = "LOGGED IN";
                 $log = $date . " " . $what;
-
+                
                 // Insert log
                 $query = "INSERT INTO LOGS (Log, Time, What, UID) VALUES ('$log','$date','$what','$uid')";
                 if (mysqli_query($connect, $query)) {
                     echo "<script>window.location.href='home.php';</script>";
+                    $_SESSION['userName'] = $name;
+                    $_SESSION['uid'] = $uid;
+                    $_SESSION["login"] = true;
                     exit;
                 } else {
                     echo "<script>alert('Error logging activity.');</script>";
