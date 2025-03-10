@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
-    <link rel="stylesheet" href="../css/aboutUs.css">
-    <link rel="stylesheet" href="../css/common.css">
-</head>
-
 <?php
 session_start();
 
@@ -40,6 +29,17 @@ function person($name, $Fullname, $imageURL, $width, $URL, $hobby1, $hobby2, $ho
 }
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="../css/aboutUs.css">
+    <link rel="stylesheet" href="../css/common.css">
+</head>
+
 
 <body>
     <?php
