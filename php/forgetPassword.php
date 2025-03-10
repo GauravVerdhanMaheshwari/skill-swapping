@@ -13,7 +13,7 @@
     <div class="password">
 
         <div class="innerPassword">
-            <form method="GET" action="reset_password.php">
+            <form method="GET" action="">
                 <h1 class="title">Recover Account</h1><br><br>
                 <label for="email">Email</label><br>
                 <input type="email" name="email" id="email" class="input" placeholder="Enter your register email"
@@ -36,6 +36,9 @@ $username = "root";
 $password = "";
 $db = "skill_swapping";
 
+session_start();
+$_SESSION['givenEmail'] = false;
+
 // Create connection
 $connect = mysqli_connect($host, $username, $password, $db);
 
@@ -44,4 +47,18 @@ if (!$connect) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
+if (isset($_GET['email'])) {
+    $email = $_GET['email'];
+
+    $query = "SELECT * FROM user WHERE Email='$email'";
+    $result = mysqli_query($connect, $query);
+
+    if (mysqli_num_rows($result) > 0) {
+        $_SESSION['givenEmail'] = true;
+        $_SESSION['email'] = $email;
+        echo "<script>window.location.href='reset_password.php';</script>";
+    } else {
+        echo "<script>alert('Email not found, please enter correct email id')</script>";
+    }
+}
 ?>
