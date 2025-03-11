@@ -32,14 +32,15 @@
 
 <?php
 
-$host = "localhost";
-$username = "root";
-$password = "";
-$db = "skill_swapping";
-$connect = mysqli_connect($host, $username, $password, $db);
+include 'connect.php';
+$connect = dbConnection();
+
 if (!$connect) {
     die("Connection failed: " . mysqli_connect_error());
 }
+
+session_start();
+$_SESSION["Admin Login"] = false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["Login"])) {
     $name = mysqli_real_escape_string($connect, $_POST["admin"]);
@@ -61,6 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["Login"])) {
 
             $query = "INSERT INTO admin_logs (Log, Time, What, AID) VALUES ('$log','$date','$what','$aid')";
             if (mysqli_query($connect, $query)) {
+                $_SESSION["Admin Login"] = true;
                 echo "<script>window.location.href='admin_dash.php';</script>";
                 exit;
             } else {
