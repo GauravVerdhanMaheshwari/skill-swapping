@@ -3,16 +3,15 @@ session_start();
 
 include 'connect.php';
 $connect = dbConnection();
-
 if (!$connect) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Ensure Admin is Logged In
 if (!isset($_SESSION["Admin Login"]) || $_SESSION["Admin Login"] == false) {
     echo "<script>window.location.href='admin_log_in.php';</script>";
     exit;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -36,27 +35,24 @@ if (!isset($_SESSION["Admin Login"]) || $_SESSION["Admin Login"] == false) {
         <table>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Created On</th>
-                <th>View Logs</th>
-                <th>Delete</th>
+                <th>Log</th>
+                <th>Time Date</th>
+                <th>Action</th>
+                <th>LID</th>
             </tr>
-
             <?php
-            $sql = "SELECT * FROM user";
+            $sql = "SELECT * FROM logs WHERE UID = " . $_GET['id'];
             $result = mysqli_query($connect, $sql);
 
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo "
                     <tr>
-                        <td>" . htmlspecialchars($row['UID']) . "</td>
-                        <td>" . htmlspecialchars($row['Name']) . "</td>
-                        <td>" . htmlspecialchars($row['Email']) . "</td>
-                        <td>" . htmlspecialchars($row['Logs']) . "</td>
-                        <td><a href='view_user.php?id=" . urlencode($row['UID']) . "' class='view-btn'>View</a></td>
-                        <td><a href='delete_user.php?id=" . urlencode($row['UID']) . "' class='delete-btn' onclick='return confirm(\"Are you sure you want to delete this user?\")'>Delete</a></td>
+                        <td>" . $_GET['id'] . "</td>
+                        <td>" . htmlspecialchars($row['Log']) . "</td>
+                        <td>" . htmlspecialchars($row['Time']) . "</td>
+                        <td>" . htmlspecialchars($row['What']) . "</td>
+                        <td>" . htmlspecialchars($row['LID']) . "</td>
                     </tr>";
                 }
             } else {

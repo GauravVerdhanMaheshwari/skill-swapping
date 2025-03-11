@@ -15,4 +15,16 @@ function customHeader()
         </header>';
 }
 
+function adminHeader()
+{
+    echo '<header class="outerHeader">
+        <h1 class="title">Welcome Admin</h1>
+        <nav class="header">
+            <a href="./admin_dash.php">Users</a>
+            <a href="./admin_courses.php">Courses</a>
+            <a href="./admin_user.php">Profile</a>
+        </nav>
+    </header>';
+}
+
 ?>
