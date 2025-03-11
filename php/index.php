@@ -76,14 +76,8 @@
 </script>
 
 <?php
-// Database connection
-$host = "localhost";
-$username = "root";
-$password = "";
-$db = "skill_swapping";
-
-$connect = mysqli_connect($host, $username, $password, $db);
-
+include 'connect.php';
+$connect = dbConnection();
 // Check connection
 if (!$connect) {
     die("Connection failed: ");

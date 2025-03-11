@@ -1,9 +1,7 @@
 <?php
 
-$host = "localhost";
-$username = "root";
-$password = "";
-$db = "skill_swapping";
+include 'connect.php';
+$connect = dbConnection();
 
 $connect = mysqli_connect($host, $username, $password, $db);
 

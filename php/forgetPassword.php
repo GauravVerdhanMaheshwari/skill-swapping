@@ -31,16 +31,11 @@
 
 <?php
 
-$host = "localhost";
-$username = "root";
-$password = "";
-$db = "skill_swapping";
+include 'connect.php';
+$connect = dbConnection();
 
 session_start();
 $_SESSION['givenEmail'] = false;
-
-// Create connection
-$connect = mysqli_connect($host, $username, $password, $db);
 
 // Check connection
 if (!$connect) {

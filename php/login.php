@@ -35,14 +35,8 @@
 
 
 <?php
-$host = "localhost";
-$username = "root";
-$password = "";
-$db = "skill_swapping";
-
-// Create connection
-$connect = mysqli_connect($host, $username, $password, $db);
-
+include 'connect.php';
+$connect = dbConnection();
 // Check connection
 if (!$connect) {
     die("Connection failed: " . mysqli_connect_error());
