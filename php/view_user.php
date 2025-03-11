@@ -21,7 +21,7 @@ if (!isset($_SESSION["Admin Login"]) || $_SESSION["Admin Login"] == false) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="../css/admin_dash.css">
+    <link rel="stylesheet" href="../css/admin_logs.css">
     <link rel="stylesheet" href="../css/admin_common.css">
 </head>
 
@@ -31,7 +31,7 @@ if (!isset($_SESSION["Admin Login"]) || $_SESSION["Admin Login"] == false) {
     adminHeader();
     ?>
 
-    <div class='user'>
+    <div class='logs'>
         <table>
             <tr>
                 <th>ID</th>
