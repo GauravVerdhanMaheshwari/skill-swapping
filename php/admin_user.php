@@ -1,0 +1,66 @@
+<?php
+session_start();
+
+include 'connect.php';
+$connect = dbConnection();
+
+if (!$connect) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Ensure Admin is Logged In
+if (!isset($_SESSION["Admin Login"]) || $_SESSION["Admin Login"] == false) {
+    echo "<script>window.location.href='admin_log_in.php';</script>";
+    exit;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../css/admin_common.css">
+    <link rel="stylesheet" href="../css/admin_user.css">
+</head>
+
+<body>
+
+    <?php
+    include 'header.php';
+    adminHeader();
+    ?>
+
+    <div class="profileDetail">
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Created On</th>
+                <th>View Logs</th>
+            </tr>
+            <?php
+            $sql = "SELECT * FROM admin where AID = " . $_SESSION['Admin ID'];
+            $result = mysqli_query($connect, $sql);
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "
+                    <tr>
+                        <td>" . htmlspecialchars($row['Name']) . "</td>
+                        <td>" . htmlspecialchars($row['Email']) . "</td>
+                        <td>" . htmlspecialchars($row['Logs']) . "</td>
+                        <td><a href='view_admin.php?id=" . urlencode($row['AID']) . "' class='view-btn'>View</a></td>
+                    </tr>";
+                }
+            } else {
+                echo "<tr><td colspan='6'>No users found.</td></tr>";
+            }
+            ?>
+        </table>
+    </div>
+
+</body>
+
+</html>
