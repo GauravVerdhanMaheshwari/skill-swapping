@@ -11,6 +11,13 @@ if (!isset($_SESSION["Admin Login"]) || $_SESSION["Admin Login"] == false) {
     exit;
 }
 
+// Ensure Admin ID is set
+if (!isset($_SESSION['Admin ID'])) {
+    echo "<script>alert('Session error. Please log in again.');</script>";
+    echo "<script>window.location.href='admin_log_in.php';</script>";
+    exit;
+}
+
 // Validate ID before using in query
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     echo "<script>alert('Invalid User ID');</script>";
@@ -20,13 +27,22 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 
 $id = intval($_GET['id']); // Ensures it's an integer
 
-$query = "DELETE FROM user WHERE UID = $id";
+$log = date("Y-m-d H:i:s") . " User Deleted ";
+$query = "INSERT INTO admin_logs (Log, Time, What, AID) 
+          VALUES ('$log', NOW(), 'DELETED USER', {$_SESSION['Admin ID']})";
 $result = mysqli_query($connect, $query);
 
-if ($result) {
-    echo "<script>alert('User Deleted Successfully');</script>";
+if (!$result) {
+    echo "<script>alert('Error logging activity.');</script>";
 } else {
-    echo "<script>alert('Error Deleting User');</script>";
+    $query = "DELETE FROM user WHERE UID = $id";
+    $result = mysqli_query($connect, $query);
+
+    if ($result) {
+        echo "<script>alert('User Deleted Successfully');</script>";
+    } else {
+        echo "<script>alert('Error Deleting User');</script>";
+    }
 }
 
 echo "<script>window.location.href='admin_dash.php';</script>";
