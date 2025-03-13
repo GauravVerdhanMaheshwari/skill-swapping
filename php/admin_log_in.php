@@ -41,6 +41,7 @@ if (!$connect) {
 
 session_start();
 $_SESSION["Admin Login"] = false;
+$_SESSION["Admin ID"] = null;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["Login"])) {
     $name = mysqli_real_escape_string($connect, $_POST["admin"]);
@@ -63,6 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["Login"])) {
             $query = "INSERT INTO admin_logs (Log, Time, What, AID) VALUES ('$log','$date','$what','$aid')";
             if (mysqli_query($connect, $query)) {
                 $_SESSION["Admin Login"] = true;
+                $_SESSION["Admin ID"] = $aid;
                 echo "<script>window.location.href='admin_dash.php';</script>";
                 exit;
             } else {
