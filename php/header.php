@@ -23,6 +23,7 @@ function adminHeader()
             <a href="./admin_dash.php">Users</a>
             <a href="./admin_courses.php">Courses</a>
             <a href="./admin_user.php">Profile</a>
+            <a href="./admin_log_out.php" id="logOut">Log Out</a>
         </nav>
     </header>';
 }
