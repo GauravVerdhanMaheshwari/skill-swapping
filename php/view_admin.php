@@ -23,7 +23,7 @@ if (!isset($_SESSION["Admin Login"]) || $_SESSION["Admin Login"] == false) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../css/admin_common.css">
-    <link rel="stylesheet" href="../css/admin_user.css">
+    <link rel="stylesheet" href="../css/admin_user_logs.css">
 </head>
 
 <body>
@@ -36,27 +36,28 @@ if (!isset($_SESSION["Admin Login"]) || $_SESSION["Admin Login"] == false) {
     <div class="profileDetail">
         <table>
             <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>ID</th>
+                <th>Log</th>
+                <th>Time Date</th>
+                <th>Action</th>
             </tr>
 
             <?php
-            /*$sql = "SELECT * FROM admin_logs where AID = " . $_SESSION['Admin ID'];
+            $sql = "SELECT * FROM admin_logs where AID = " . $_SESSION['Admin ID'];
             $result = mysqli_query($connect, $sql);
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo "
                 <tr>
-                <td>" . htmlspecialchars($row['']) . "</td>
-                <td>" . htmlspecialchars($row['']) . "</td>
-                <td>" . htmlspecialchars($row['']) . "</td>
+                <td>" . htmlspecialchars($row['LID']) . "</td>
+                <td>" . htmlspecialchars($row['Log']) . "</td>
+                <td>" . htmlspecialchars($row['Time']) . "</td>
+                <td id='Action'>" . htmlspecialchars($row['What']) . "</td>
                 </tr>";
                 }
             } else {
                 echo "<tr><td colspan='6'>No users found.</td></tr>";
-            }*/
+            }
             ?>
 
         </table>
