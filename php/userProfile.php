@@ -3,8 +3,6 @@
 include 'connect.php';
 $connect = dbConnection();
 
-$connect = mysqli_connect($host, $username, $password, $db);
-
 session_start();
 if ($_SESSION["login"] == false) {
     echo "<script>window.location.href='login.php';</script>";
