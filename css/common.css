@@ -5,7 +5,6 @@ html {
   background: rgb(240, 186, 86) url("../image/background.png") no-repeat center
     top;
   background-size: cover;
-  height: 100vh;
 }
 
 .head {
