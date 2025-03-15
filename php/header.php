@@ -7,7 +7,7 @@ function customHeader()
             <a href="home.php" class="logo"><img src="../image/skillSwapping.png"></a>
             <div class="innerHead">
                 <a href="home.php">Home</a>
-                <a href="courses.php">Courses</a>
+                <a href="addCourses.php">Add Courses</a>
                 <a href="aboutUs.php">About Us</a>
                 <img src="../image/search.png" class="searchImg"><input type="text" name="courseSearch" id="courseSearch">
             </div>
