@@ -76,8 +76,12 @@
 </script>
 
 <?php
+session_start();
 include 'connect.php';
 $connect = dbConnection();
+$_SESSION["Register"] = false;
+$_SESSION["UID"] = null;
+
 // Check connection
 if (!$connect) {
     die("Connection failed: ");
@@ -106,7 +110,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             $query = "INSERT INTO user (Name, Email, Password, Logs) VALUES ('$name', '$email', '$hashedPassword', '$logs')";
             if (mysqli_query($connect, $query)) {
-                echo "<script> window.location.href='skillSelection.php';</script>";
+                $query = "SELECT * FROM user WHERE Email='$email'";
+                $result = mysqli_query($connect, $query);
+                if (mysqli_query($connect, $query)) {
+                    $row = mysqli_fetch_assoc($result);
+                    $_SESSION['userName'] = $row["Name"];
+                    $_SESSION["UID"] = $row["UID"];
+                    $_SESSION["Register"] = true;
+                    echo "<script> window.location.href='skillSelection.php';</script>";
+                } else {
+                    echo "<script>alert('Error!');</script>";
+                }
             } else {
                 echo "<script>alert('Error!');</script>";
             }
