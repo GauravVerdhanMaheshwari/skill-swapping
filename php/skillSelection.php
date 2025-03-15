@@ -25,7 +25,7 @@
             <p class="para">If you don't have any skills, just skip this form.</p>
 
             <input type="submit" value="Submit" class="submit-btn">
-            <a href="home.php" class="skip-btn">Skip</a>
+            <a href="login.php" class="skip-btn">Skip</a>
         </form>
     </section>
 
@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "SELECT * FROM user_skill WHERE UID='$UID'";
     $result = mysqli_query($connect, $sql);
     if (mysqli_num_rows($result) > 0) {
-        echo "<script> window.location.href='home.php';</script>";
+        echo "<script> window.location.href='login.php';</script>";
         exit;
     }
 
@@ -94,10 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = mysqli_query($connect, $sql);
 
     if ($result) {
-        $_SESSION['userName'] = $name;
-        $_SESSION['uid'] = $uid;
-        $_SESSION["login"] = true;
-        echo "<script>window.location.href='home.php';</script>";
+        echo "<script>window.location.href='login.php';</script>";
     } else {
         echo "Error: " . mysqli_error($connect);
     }

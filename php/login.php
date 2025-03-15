@@ -16,6 +16,9 @@
                 <label for="userName">User Name</label><br>
                 <input type="text" class="input" name="userName" id="userName" autocomplete="off"
                     placeholder="Enter your username" required minlength="5" maxlength="10"><br><br>
+                <label for="userName">Email</label><br>
+                <input type="text" class="input" name="email" id="email" autocomplete="off"
+                    placeholder="Enter your email" required><br><br>
                 <label for="password">Password</label><br>
                 <input type="password" class="input" name="password" id="password" autocomplete="off"
                     placeholder="Enter your password" required minlength="8" maxlength="10"><br><br>
@@ -48,13 +51,14 @@ $_SESSION["login"] = false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["Login"])) {
     $name = mysqli_real_escape_string($connect, $_POST["userName"]);
+    $email = mysqli_real_escape_string($connect, $_POST["email"]);
     $password = $_POST["password"]; // No need to escape, it's used in password_verify
 
     if ($name === "allCats" || $password === "areCoolAF") {
         echo "<script>window.location.href='easter.html';</script>";
     } else {
         // Fetch UID and Hashed Password from database
-        $checkName = "SELECT UID, Password FROM user WHERE Name='$name'";
+        $checkName = "SELECT UID, Password FROM user WHERE Name='$name' and Email='$email'";
         $result = mysqli_query($connect, $checkName);
 
         if ($result && mysqli_num_rows($result) > 0) {
@@ -66,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["Login"])) {
                 $date = date("Y-m-d H:i:s");
                 $what = "LOGGED IN";
                 $log = $date . " " . $what;
-                
+
                 // Insert log
                 $query = "INSERT INTO LOGS (Log, Time, What, UID) VALUES ('$log','$date','$what','$uid')";
                 if (mysqli_query($connect, $query)) {
