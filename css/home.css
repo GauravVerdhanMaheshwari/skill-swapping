@@ -14,3 +14,31 @@
   margin: 10% 10%;
   text-shadow: rgba(0, 0, 0, 0.5) 1px 1px 10px;
 }
+.courseDiv {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.courseName {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.courseDescription {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.courseLink {
+  font-size: 14px;
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.courseLink:hover {
+  text-decoration: underline;
+}

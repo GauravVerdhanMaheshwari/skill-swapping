@@ -43,7 +43,7 @@ if ($_SESSION["login"] == false) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $courseName = $row["Title"];
                 $courseDescription = $row["Description"];
-                $courseID = $row["CID"];
+                $courseID = $row["Cid"];
                 echo "<div class='courseDiv'>";
                 echo "<p class='courseName'>$courseName</p>";
                 echo "<p class='courseDescription'>$courseDescription</p>";
