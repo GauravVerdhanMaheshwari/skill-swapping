@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.userLink {
+    width: 50%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.userLink p {
+    margin: 10px 0;
+    color: #555;
+}
+
+.userLink input[type="text"],
+.userLink input[type="email"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.userLink input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.userLink input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.userLink a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #ff0000;
+    text-decoration: none;
+}
+
+.userLink a:hover {
+    text-decoration: underline;
+}
