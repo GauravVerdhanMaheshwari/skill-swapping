@@ -43,6 +43,8 @@ if (!isset($_SESSION["Admin Login"]) || $_SESSION["Admin Login"] == false) {
                 <th>Price</th>
                 <th>Status</th>
                 <th>Creator ID</th>
+                <th>View</th>
+                <th>Delete</th>
             </tr>
 
             <?php
@@ -65,7 +67,7 @@ if (!isset($_SESSION["Admin Login"]) || $_SESSION["Admin Login"] == false) {
                         <td>" . htmlspecialchars($row['SkillTeaching']) . "</td>
                         <td>" . htmlspecialchars($row['Price']) . "</td>
                         <td>" . htmlspecialchars($row['Status']) . "</td>
-                        // <td>" . htmlspecialchars($row['UID']) . "</td>
+                        <td>" . htmlspecialchars($row['UID']) . "</td>
                         <td><a href='view_user.php?id=" . urlencode($row['UID']) . "' class='view-btn'>View</a></td>
                         <td><a href='delete_user.php?id=" . urlencode($row['UID']) . "' class='delete-btn' onclick='return confirm(\"Are you sure you want to delete this user?\")'>Delete</a></td>
                         </tr>";
