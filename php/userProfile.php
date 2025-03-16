@@ -47,6 +47,7 @@ if ($query) {
         <br>
         <a href="editProfile.php" class="editProfile">Edit Profile</a>
         <a href="changePassword.php" class="changePassword">Change Password</a>
+        <a href="myCourses.php" class="myCourses">My Courses</a>
         <a href="viewLogs.php" class="myLogs">View Logs</a>
         <a href="logout.php" class="logOut">Log Out</a>
     </div>

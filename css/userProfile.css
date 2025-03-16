@@ -30,6 +30,7 @@ body {
 }
 
 .editProfile,
+.myCourses,
 .myLogs,
 .changePassword,
 .editProfile {
@@ -48,6 +49,7 @@ body {
 .editProfile:hover,
 .myLogs:hover,
 .changePassword:hover,
+.myCourses:hover,
 .editProfile:hover {
   background-color: #003f7f;
 }
