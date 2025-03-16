@@ -5,8 +5,8 @@ $connect = dbConnection();
 
 session_start();
 
-if ($_SESSION["login"] == false) {
-    echo "<script>window.location.href='login.php';</script>";
+if (!isset($_SESSION['user']) && !isset($_SESSION['uid']) && !$_SESSION['login']) {
+    echo "<script>window.location.href = 'login.php'</script>";
     exit;
 }
 
