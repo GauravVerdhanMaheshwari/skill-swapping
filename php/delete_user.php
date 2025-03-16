@@ -35,13 +35,29 @@ $result = mysqli_query($connect, $query);
 if (!$result) {
     echo "<script>alert('Error logging activity.');</script>";
 } else {
-    $query = "DELETE FROM user WHERE UID = $id";
-    $result = mysqli_query($connect, $query);
 
+    $query = "SELECT * FROM user WHERE UID = $id";
+    $result = mysqli_query($connect, $query);
     if ($result) {
-        echo "<script>alert('User Deleted Successfully');</script>";
-    } else {
-        echo "<script>alert('Error Deleting User');</script>";
+        $row = mysqli_fetch_assoc($result);
+        $userName = $row["Name"];
+        $userEmail = $row["Email"];
+        $time = date("Y-m-d H:i:s");
+
+        $query = "INSERT INTO deleted_user (Time, Name, Email,UID) VALUES ('$time' , '$userName', '$userEmail','$id')";
+        $result = mysqli_query($connect, $query);
+        if (!$result) {
+            echo "<script>alert('Error logging activity.');</script>";
+        } else {
+            $query = "DELETE FROM user WHERE UID = $id";
+            $result = mysqli_query($connect, $query);
+
+            if ($result) {
+                echo "<script>alert('User Deleted Successfully');</script>";
+            } else {
+                echo "<script>alert('Error Deleting User');</script>";
+            }
+        }
     }
 }
 
