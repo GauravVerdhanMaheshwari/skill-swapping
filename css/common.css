@@ -4,6 +4,7 @@ html {
   padding: 0%;
   background: rgb(240, 186, 86) url("../image/background.png") no-repeat center
     top;
+  font-family: Arial, sans-serif;
   background-size: cover;
 }
 
