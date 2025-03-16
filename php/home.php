@@ -21,6 +21,7 @@ if (!isset($_SESSION['user']) && !isset($_SESSION['uid']) && !$_SESSION['login']
     <title>Home</title>
     <link rel="stylesheet" href="../css/home.css">
     <link rel="stylesheet" href="../css/common.css">
+    <link rel="icon" type="image/x-icon" href="../image/logo.png">
 </head>
 
 <body>

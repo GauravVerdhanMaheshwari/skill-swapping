@@ -21,6 +21,7 @@ if ($_SESSION['givenEmail'] == false) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reset Password</title>
+    <link rel="icon" type="image/x-icon" href="../image/logo.png">
     <link rel="stylesheet" href="../css/reset_password.css">
 </head>
 
