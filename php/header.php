@@ -4,7 +4,7 @@ function customHeader()
 {
     echo
         '<header class="head">
-            <a href="home.php" class="logo"><img src="../image/skillSwapping.png"></a>
+            <a href="home.php" class="logoDiv"><img src="../image/logo.png" width="80px" class="logo"></a>
             <div class="innerHead">
                 <a href="home.php">Home</a>
                 <a href="addCourses.php">Add Courses</a>
