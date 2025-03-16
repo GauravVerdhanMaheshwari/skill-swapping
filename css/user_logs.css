@@ -1,0 +1,58 @@
+.logs {
+  width: 80%;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #333;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  color: #f2f2f2;
+}
+
+.logs table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.backLink {
+    text-decoration: none;
+}
+
+.backButton {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #f2f2f2;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.backButton:hover {
+    background-color: #555;
+}
+
+.logs th {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #555;
+  background-color: #222;
+}
+
+.logs td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #555;
+}
+
+
+.logs tr:hover {
+  background-color: #555;
+}
+
+.logs tr:nth-child(even) {
+  background-color: #444;
+}
+
+.logs tr:nth-child(even):hover {
+  background-color: #666;
+}
