@@ -41,6 +41,7 @@ if (!isset($_SESSION["Admin Login"]) || $_SESSION["Admin Login"] == false) {
                 <th>Email</th>
                 <th>Created On</th>
                 <th>View Logs</th>
+                <th>View User Skill</th>
                 <th>Delete</th>
             </tr>
 
@@ -57,11 +58,12 @@ if (!isset($_SESSION["Admin Login"]) || $_SESSION["Admin Login"] == false) {
                         <td>" . htmlspecialchars($row['Email']) . "</td>
                         <td>" . htmlspecialchars($row['Logs']) . "</td>
                         <td><a href='view_user.php?id=" . urlencode($row['UID']) . "' class='view-btn'>View</a></td>
+                        <td><a href='view_user_skills.php?id=" . urlencode($row['UID']) . "' class='view-btn'>View</a></td>
                         <td><a href='delete_user.php?id=" . urlencode($row['UID']) . "' class='delete-btn' onclick='return confirm(\"Are you sure you want to delete this user?\")'>Delete</a></td>
                     </tr>";
                 }
             } else {
-                echo "<tr><td colspan='6'>No users found.</td></tr>";
+                echo "<tr><td colspan='7'>No users found.</td></tr>";
             }
             ?>
         </table>

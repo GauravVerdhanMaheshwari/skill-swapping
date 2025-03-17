@@ -1,0 +1,65 @@
+<?php
+session_start();
+
+include 'connect.php';
+$connect = dbConnection();
+if (!$connect) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+if (!isset($_SESSION["Admin Login"]) || $_SESSION["Admin Login"] == false) {
+    echo "<script>window.location.href='admin_log_in.php';</script>";
+    exit;
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../image/logo.png">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../css/admin_logs.css">
+    <link rel="stylesheet" href="../css/admin_common.css">
+</head>
+
+<body>
+    <?php
+    include 'header.php';
+    adminHeader();
+    ?>
+
+    <div class='logs'>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Skill One</th>
+                <th>Skill Two</th>
+                <th>Skill Three</th>
+            </tr>
+            <?php
+            $sql = "SELECT * FROM user_skill WHERE UID = " . $_GET['id'];
+            $result = mysqli_query($connect, $sql);
+
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "
+                    <tr>
+                        <td>" . $_GET['id'] . "</td>
+                        <td>" . (!empty($row['Skill_1']) ? htmlspecialchars($row['Skill_1']) : 'N/A') . "</td>
+                        <td>" . (!empty($row['Skill_2']) ? htmlspecialchars($row['Skill_2']) : 'N/A') . "</td>
+                        <td>" . (!empty($row['Skill_3']) ? htmlspecialchars($row['Skill_3']) : 'N/A') . "</td>
+                    </tr>";
+                }
+            } else {
+                echo "<tr><td colspan='4'>User did not entered any skills.</td></tr>";
+            }
+            ?>
+        </table>
+    </div>
+</body>
+
+</html>
