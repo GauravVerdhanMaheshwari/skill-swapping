@@ -34,7 +34,7 @@ if (!isset($_SESSION['user']) && !isset($_SESSION['uid']) && !$_SESSION['login']
     </div>
     <div class="course">
         <?php
-        $query = "SELECT Cid,Title,Description FROM courses";
+        $query = "SELECT Cid,Title,Description FROM courses where Status = 1";
         $result = mysqli_query($connect, $query);
         if (!$result) {
             echo "Error: <br>" . mysqli_error($connect);

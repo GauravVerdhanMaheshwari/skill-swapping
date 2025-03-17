@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["Login"])) {
                 $query = "INSERT INTO LOGS (Log, Time, What, UID) VALUES ('$log','$date','$what','$uid')";
                 if (mysqli_query($connect, $query)) {
                     echo "<script>window.location.href='home.php';</script>";
-                    $_SESSION['userName'] = $name;
+                    $_SESSION['user'] = $name;
                     $_SESSION['uid'] = $uid;
                     $_SESSION["login"] = true;
                     exit;
