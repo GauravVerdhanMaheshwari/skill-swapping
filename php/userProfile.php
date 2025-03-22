@@ -10,12 +10,11 @@ if ($_SESSION["login"] == false) {
 }
 
 $uid = $_SESSION["uid"];
-$noSkill = false; 
 
 $query = "SELECT Name, Email FROM user WHERE UID = '$uid'";
 $result = mysqli_query($connect, $query);
 
-if ($result) { 
+if ($result) {
     $row = mysqli_fetch_assoc($result);
     $name = $row["Name"] ?? "Unknown";
     $email = $row["Email"] ?? "Unknown";
@@ -25,24 +24,9 @@ if ($result) {
 
     if ($skillResult && mysqli_num_rows($skillResult) > 0) {
         $skillRow = mysqli_fetch_assoc($skillResult);
-        $skill1 = $skillRow["Skill_1"] ?? "N/A";
-        $skill2 = $skillRow["Skill_2"] ?? "N/A";
-        $skill3 = $skillRow["Skill_3"] ?? "N/A";
+        $skills = array_filter([$skillRow["Skill_1"], $skillRow["Skill_2"], $skillRow["Skill_3"]], fn($skill) => !empty($skill));
     } else {
-        $noSkill = true;
-        $skill1 = $skill2 = $skill3 = "N/A";
-    }
-}
-
-function printSkill()
-{
-    global $skill1, $skill2, $skill3;
-    $skills = array_filter([$skill1, $skill2, $skill3], fn($skill) => $skill !== "N/A");
-
-    if (!empty($skills)) {
-        echo "Skill: " . implode(", ", $skills);
-    } else {
-        echo "No skills added yet.";
+        $skills = [];
     }
 }
 
@@ -70,7 +54,16 @@ function printSkill()
         <h1 class="title">User Profile</h1>
         <p class="name">Name: <?php echo htmlspecialchars($name); ?></p>
         <p class="email">Email: <?php echo htmlspecialchars($email); ?></p>
-        <p class="skills"><?php echo !$noSkill ? printSkill() : "No skills added yet."; ?></p>
+        <p class="skills">Skills:</p>
+        <ul>
+            <?php if (!empty($skills)) {
+                foreach ($skills as $skill) {
+                    echo "<li>" . htmlspecialchars($skill) . "</li>";
+                }
+            } else {
+                echo "<li>Not added yet.</li>";
+            } ?>
+        </ul>
         <br>
         <a href="editProfile.php" class="editProfile">Edit Profile</a>
         <a href="changePassword.php" class="changePassword">Change Password</a>

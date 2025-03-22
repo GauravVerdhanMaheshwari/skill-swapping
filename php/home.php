@@ -34,7 +34,7 @@ if (!isset($_SESSION['user']) && !isset($_SESSION['uid']) && !$_SESSION['login']
     </div>
     <div class="course">
         <?php
-        $query = "SELECT Cid,Title,Description FROM courses where Status = 1";
+        $query = "SELECT Cid,Title,Description,Price FROM courses where Status = 1";
         $result = mysqli_query($connect, $query);
         if (!$result) {
             echo "Error: <br>" . mysqli_error($connect);
@@ -45,9 +45,11 @@ if (!isset($_SESSION['user']) && !isset($_SESSION['uid']) && !$_SESSION['login']
                 $courseName = $row["Title"];
                 $courseDescription = $row["Description"];
                 $courseID = $row["Cid"];
+                $coursePrice = $row["Price"];
                 echo "<div class='courseDiv'>";
                 echo "<p class='courseName'>$courseName</p>";
                 echo "<p class='courseDescription'>$courseDescription</p>";
+                echo "<p class='coursePrice'>Price: ₹$coursePrice</p>";
                 echo "<a href='courseDetails.php?courseID=$courseID' class='courseLink'>View Details</a>";
                 echo "</div>";
             }

@@ -34,6 +34,10 @@
                     placeholder="Confirm your password" required minlength="8" maxlength="10"><br>
                 <p id="confirmPasswordWarning" class="warning"></p>
 
+                <label for="bio">Bio</label><br>
+                <textarea name="bio" class="" id="bio" autocomplete="off" placeholder="Enter your bio" required
+                    maxlength="100"></textarea><br>
+
                 <br><input type="submit" value="Register" name="register" class="button"><br><br>
                 <a href="login.php" class="link">Already have an account?</a>
             </form>
@@ -114,11 +118,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
                 $query = "SELECT * FROM user WHERE Email='$email'";
                 $result = mysqli_query($connect, $query);
                 if (mysqli_query($connect, $query)) {
-                    $row = mysqli_fetch_assoc($result);
-                    $_SESSION['userName'] = $row["Name"];
-                    $_SESSION["UID"] = $row["UID"];
-                    $_SESSION["Register"] = true;
-                    echo "<script> window.location.href='skillSelection.php';</script>";
+                    $query = "SELECT * FROM user WHERE Email='$email'";
+                    $result = mysqli_query($connect, $query);
+                    if (!$result) {
+                        echo "Error: <br>" . mysqli_error($connect);
+                    } else {
+                        $bio = mysqli_real_escape_string($connect, $_POST["bio"]);
+                        $row = mysqli_fetch_assoc($result);
+                        $UID = $row["UID"];
+                        $query = "INSERT INTO user_bio (UID, Bio) VALUES ('$UID', '$bio')";
+                        if (mysqli_query($connect, $query)) {
+                            echo "<script>alert('Registered successfully!');</script>";
+                            $row = mysqli_fetch_assoc($result);
+                            $_SESSION['userName'] = $row["Name"];
+                            $_SESSION["uid"] = $row["uid"];
+                            $_SESSION["Register"] = true;
+                            echo "<script> window.location.href='skillSelection.php';</script>";
+                        } else {
+                            echo "<script>alert('Error!');</script>";
+                        }
+                    }
                 } else {
                     echo "<script>alert('Error!');</script>";
                 }
