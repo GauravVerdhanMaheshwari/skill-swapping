@@ -1,0 +1,87 @@
+/* Main container */
+.container {
+  width: 80%;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #333;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  color: #f2f2f2;
+  text-align: center;
+}
+
+/* Flex container for buttons and title */
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* Title Styling */
+.title {
+  font-size: 24px;
+}
+
+/* Button styling */
+.link-button {
+  text-decoration: none;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #f2f2f2;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+/* Table Styles */
+.table-container {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-header {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #555;
+  background-color: #222;
+}
+
+.table-data {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #555;
+}
+
+/* Alternating row colors */
+.table-row:nth-child(even) {
+  background-color: #444;
+}
+
+.table-row:hover {
+  background-color: #555;
+}
+
+.table-row:nth-child(even):hover {
+  background-color: #666;
+}
+
+/* View Link */
+.view-link {
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: blue;
+  color: white;
+}
+
+.view-link:hover {
+  opacity: 0.8;
+}
