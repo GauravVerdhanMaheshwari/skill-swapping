@@ -9,7 +9,9 @@ function customHeader()
                 <a href="home.php">Home</a>
                 <a href="addCourses.php">Add Courses</a>
                 <a href="aboutUs.php">About Us</a>
-                <img src="../image/search.png" class="searchImg"><input type="text" name="courseSearch" id="courseSearch">
+                <form method="GET" action="search.php" class="searchForm">
+                <input type="text" name="courseSearch" id="courseSearch" placeholder="Search courses..." required>
+                </form>
             </div>
             <a href="userProfile.php" class="profilePictureLink"><img src="../image/user.png" class="profilePicture"></a>
         </header>';
