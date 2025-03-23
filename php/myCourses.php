@@ -47,7 +47,7 @@ if (!isset($_SESSION['uid']) && !isset($_SESSION['login'])) {
                 My Courses
             </h2>
 
-            <a href="./enrolled.php" class="backLink">
+            <a href="./my_enrolled.php" class="backLink">
                 <button class="backButton">
                     View My enrolled courses
                 </button>
@@ -79,12 +79,12 @@ if (!isset($_SESSION['uid']) && !isset($_SESSION['login'])) {
                         <td>" . htmlspecialchars($row['SkillTeaching']) . "</td>
                         <td>" . htmlspecialchars($row['Price']) . "</td>
                         <td>" . htmlspecialchars($row['Status']) . "</td>
-                        <td><a href='view_user.php?id=" . urlencode($row['CID']) . "' class='view-btn'>View</a></td>
-                        <td><a href='delete_user.php?id=" . urlencode($row['CID']) . "' class='delete-btn' onclick='return confirm(\"Are you sure you want to delete this courses?\")'>Delete</a></td>
+                        <td><a href='view_course.php?id=" . urlencode($row['Cid']) . "' class='view-btn'>View</a></td>
+                        <td><a href='delete_course.php?id=" . urlencode($row['Cid']) . "' class='delete-btn' onclick='return confirm(\"Are you sure you want to delete this courses?\")'>Delete</a></td>
                     </tr>";
                 }
             } else {
-                echo "<tr><td colspan='8'>No courses found under your name. Please enroll in one</td></tr>";
+                echo "<tr><td colspan='8'>No courses found under your name.</td></tr>";
             }
             ?>
         </table>
