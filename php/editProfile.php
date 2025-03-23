@@ -10,6 +10,7 @@ if (!isset($_SESSION["login"]) || $_SESSION["login"] == false) {
 
 $uid = $_SESSION["uid"];
 
+// Fetch user details
 $query = "SELECT Name, Email FROM user WHERE UID = '$uid'";
 $result = mysqli_query($connect, $query);
 
@@ -35,6 +36,16 @@ if ($skillResult && mysqli_num_rows($skillResult) > 0) {
     $skill1 = $skill2 = $skill3 = "";
 }
 
+// Fetch user bio
+$bioQuery = "SELECT Bio FROM bio WHERE UID = '$uid'";
+$bioResult = mysqli_query($connect, $bioQuery);
+if ($bioResult && mysqli_num_rows($bioResult) > 0) {
+    $bioRow = mysqli_fetch_assoc($bioResult);
+    $bio = $bioRow["Bio"];
+} else {
+    $bio = "";
+}
+
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $newName = mysqli_real_escape_string($connect, $_POST['name']);
@@ -42,12 +53,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $newSkill1 = mysqli_real_escape_string($connect, $_POST['skill1']);
     $newSkill2 = mysqli_real_escape_string($connect, $_POST['skill2']);
     $newSkill3 = mysqli_real_escape_string($connect, $_POST['skill3']);
+    $newBio = mysqli_real_escape_string($connect, $_POST['bio']);
 
+    // Update user details
     $updateQuery = "UPDATE user SET Name = '$newName', Email = '$newEmail' WHERE UID = '$uid'";
     mysqli_query($connect, $updateQuery);
 
-    $updateSkillsQuery = "INSERT INTO user_skill (UID, Skill_1, Skill_2, Skill_3) VALUES ('$uid', '$newSkill1', '$newSkill2', '$newSkill3') ON DUPLICATE KEY UPDATE Skill_1='$newSkill1', Skill_2='$newSkill2', Skill_3='$newSkill3'";
+    // Update skills (Insert if not exists, otherwise update)
+    $updateSkillsQuery = "INSERT INTO user_skill (UID, Skill_1, Skill_2, Skill_3) 
+                          VALUES ('$uid', '$newSkill1', '$newSkill2', '$newSkill3') 
+                          ON DUPLICATE KEY UPDATE Skill_1='$newSkill1', Skill_2='$newSkill2', Skill_3='$newSkill3'";
     mysqli_query($connect, $updateSkillsQuery);
+
+    // Update bio (Insert if not exists, otherwise update)
+    $updateBioQuery = "INSERT INTO bio (UID, Bio) 
+                       VALUES ('$uid', '$newBio') 
+                       ON DUPLICATE KEY UPDATE Bio = '$newBio'";
+    mysqli_query($connect, $updateBioQuery);
 
     echo "<script>alert('Profile updated successfully!'); window.location.href='userProfile.php';</script>";
 }
@@ -85,6 +107,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </p>
             <p class="skill">Skill 3
                 <input type="text" name="skill3" value="<?php echo htmlspecialchars($skill3); ?>">
+            </p>
+            <p class="bio">Bio
+                <textarea name="bio"><?php echo htmlspecialchars($bio); ?></textarea>
             </p>
             <br>
             <input type="submit" value="Save" class="editProfile">
