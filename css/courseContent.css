@@ -1,0 +1,111 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+/* Title Section */
+.titleDiv {
+  text-align: center;
+  background-color: #007bff;
+  color: white;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Course Content Container */
+.courseContent {
+  width: 80%;
+  max-width: 800px;
+  background-color: white;
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+h2 {
+  color: #333;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
+}
+
+/* Next Course Time */
+.next-course-time {
+  font-weight: bold;
+  color: #ff9800;
+  font-size: 18px;
+}
+
+/* Progress Bar */
+.progress-container {
+  width: 100%;
+  background-color: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 20px;
+  background-color: #4caf50;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  line-height: 20px;
+  border-radius: 10px;
+  transition: width 0.5s ease-in-out;
+}
+
+/* Buttons */
+.continue-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 15px;
+  transition: background 0.3s ease;
+}
+
+.continue-btn:hover {
+  background-color: #218838;
+}
+
+/* Back Button */
+.backButton {
+  display: inline-block;
+  padding: 10px 15px;
+  margin-top: 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+
+.backButton:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .courseContent {
+    width: 95%;
+  }
+
+  .continue-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
