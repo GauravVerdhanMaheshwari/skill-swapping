@@ -1,0 +1,76 @@
+.logs {
+  width: 80%;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #333;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  color: #f2f2f2;
+  text-align: center;
+}
+
+.logs table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.backLink {
+  text-decoration: none;
+}
+
+.backButton {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #f2f2f2;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.backButton:hover {
+  background-color: #555;
+}
+
+.logs th,
+.logs td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #555;
+}
+
+.logs th {
+  background-color: #222;
+}
+
+.logs tr:hover {
+  background-color: #555;
+}
+
+.logs tr:nth-child(even) {
+  background-color: #444;
+}
+
+.logs tr:nth-child(even):hover {
+  background-color: #666;
+}
+
+.logsLink {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.logsLink a button {
+  background-color: #ffffff;
+  color: black;
+}
+
+.logsLink a button:hover {
+  background-color: #e2e2e2;
+}
+
+.logTitle {
+  font-size: 24px;
+}
