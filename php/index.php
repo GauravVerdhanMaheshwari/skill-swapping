@@ -114,32 +114,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
             // Insert data into the database
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             $query = "INSERT INTO user (Name, Email, Password, Logs) VALUES ('$name', '$email', '$hashedPassword', '$logs')";
-            if (mysqli_query($connect, $query)) {
+            if (mysqli_query($connect, query: $query)) {
                 $query = "SELECT * FROM user WHERE Email='$email'";
                 $result = mysqli_query($connect, $query);
-                if (mysqli_query($connect, $query)) {
-                    $query = "SELECT * FROM user WHERE Email='$email'";
-                    $result = mysqli_query($connect, $query);
-                    if (!$result) {
-                        echo "Error: <br>" . mysqli_error($connect);
-                    } else {
-                        $bio = mysqli_real_escape_string($connect, $_POST["bio"]);
-                        $row = mysqli_fetch_assoc($result);
-                        $UID = $row["UID"];
-                        $query = "INSERT INTO user_bio (UID, Bio) VALUES ('$UID', '$bio')";
-                        if (mysqli_query($connect, $query)) {
-                            echo "<script>alert('Registered successfully!');</script>";
-                            $row = mysqli_fetch_assoc($result);
-                            $_SESSION['userName'] = $row["Name"];
-                            $_SESSION["uid"] = $row["uid"];
-                            $_SESSION["Register"] = true;
-                            echo "<script> window.location.href='skillSelection.php';</script>";
-                        } else {
-                            echo "<script>alert('Error!');</script>";
-                        }
-                    }
+                if (!$result) {
+                    echo "Error: <br>" . mysqli_error($connect);
                 } else {
-                    echo "<script>alert('Error!');</script>";
+                    $bio = mysqli_real_escape_string($connect, $_POST["bio"]);
+                    $row = mysqli_fetch_assoc($result);
+                    $UID = $row["UID"];
+                    $query = "INSERT INTO user_bio (UID, Bio) VALUES ('$UID', '$bio')";
+                    if (mysqli_query($connect, $query)) {
+                        echo "<script>alert('Registered successfully!');</script>";
+                        $row = mysqli_fetch_assoc($result);
+                        $_SESSION['userName'] = $row["Name"];
+                        $_SESSION["uid"] = $row["uid"];
+                        $_SESSION["Register"] = true;
+                        echo "<script> window.location.href='skillSelection.php';</script>";
+                    } else {
+                        echo "<script>alert('Error!');</script>";
+                    }
                 }
             } else {
                 echo "<script>alert('Error!');</script>";
@@ -147,6 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
         }
     }
 }
+
 ?>
 
 </html>
