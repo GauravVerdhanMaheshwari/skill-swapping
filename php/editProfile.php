@@ -60,15 +60,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     mysqli_query($connect, $updateQuery);
 
     // Update skills (Insert if not exists, otherwise update)
-    $updateSkillsQuery = "INSERT INTO user_skill (UID, Skill_1, Skill_2, Skill_3) 
-                          VALUES ('$uid', '$newSkill1', '$newSkill2', '$newSkill3') 
-                          ON DUPLICATE KEY UPDATE Skill_1='$newSkill1', Skill_2='$newSkill2', Skill_3='$newSkill3'";
+    $updateSkillsQuery = "UPDATE user_skill 
+                        SET Skill_1 = '$newSkill1', Skill_2 = '$newSkill2', Skill_3 = '$newSkill3' 
+                        WHERE UID = '$uid'";
+
     mysqli_query($connect, $updateSkillsQuery);
 
     // Update bio (Insert if not exists, otherwise update)
-    $updateBioQuery = "INSERT INTO bio (UID, Bio) 
-                       VALUES ('$uid', '$newBio') 
-                       ON DUPLICATE KEY UPDATE Bio = '$newBio'";
+    $updateBioQuery = "UPDATE bio 
+                    SET Bio = '$newBio' 
+                    WHERE UID = '$uid'";
+
     mysqli_query($connect, $updateBioQuery);
 
     echo "<script>alert('Profile updated successfully!'); window.location.href='userProfile.php';</script>";

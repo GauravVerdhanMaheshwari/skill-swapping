@@ -25,7 +25,7 @@
     $skill1 = $row['Skill_1'];
     $skill2 = $row['Skill_2'];
     $skill3 = $row['Skill_3'];
-    if ($skill1 == NULL || $skill2 == NULL || $skill3 == NULL) {
+    if ($skill1 == NULL ) {
         echo "<script>alert('Please add skills first')</script>";
         echo "<script>window.location.href = 'userProfile.php'</script>";
         exit();

@@ -72,13 +72,13 @@ include 'connect.php';
 $connect = dbConnection();
 
 // Ensure session variable exists
-if (!isset($_SESSION["UID"]) && $_SESSION["Register"] == false) {
+if (!isset($_SESSION["uid"]) && $_SESSION["Register"] == false) {
     echo "<script> window.location.href='index.php';</script>";
     exit;
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $UID = $_SESSION["UID"];
+    $UID = $_SESSION["uid"];
     $skill1 = $_POST["Skill_1"] ?? NULL;
     $skill2 = $_POST["Skill_2"] ?? NULL;
     $skill3 = $_POST["Skill_3"] ?? NULL;

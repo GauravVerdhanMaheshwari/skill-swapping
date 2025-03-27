@@ -123,12 +123,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
                     $bio = mysqli_real_escape_string($connect, $_POST["bio"]);
                     $row = mysqli_fetch_assoc($result);
                     $UID = $row["UID"];
-                    $query = "INSERT INTO user_bio (UID, Bio) VALUES ('$UID', '$bio')";
+                    $query = "INSERT INTO bio (UID, Bio) VALUES ('$UID', '$bio')";
                     if (mysqli_query($connect, $query)) {
                         echo "<script>alert('Registered successfully!');</script>";
-                        $row = mysqli_fetch_assoc($result);
                         $_SESSION['userName'] = $row["Name"];
-                        $_SESSION["uid"] = $row["uid"];
+                        $_SESSION["uid"] = $row["UID"];
                         $_SESSION["Register"] = true;
                         echo "<script> window.location.href='skillSelection.php';</script>";
                     } else {

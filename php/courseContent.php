@@ -46,13 +46,14 @@ if (isset($_POST['increaseProgress'])) {
 
     // If progress reaches 100%, move to completed_courses
     if ($newProgress >= 100) {
-        $moveQuery = "INSERT INTO completed_courses ( Cid, Title, Description, Price) 
-                      SELECT  Cid, Title, Description, Price FROM courses WHERE Cid = $courseID";
+        $moveQuery = "INSERT INTO completed_courses ( Cid, Title, Description, Price,UID) 
+                      SELECT  Cid, Title, Description, Price,$userID FROM courses WHERE Cid = $courseID";
         mysqli_query($connect, $moveQuery);
 
         // Remove from enroll table
         $deleteQuery = "DELETE FROM enroll WHERE CID = $courseID AND Enroller = $userID";
         mysqli_query($connect, $deleteQuery);
+        echo "<script>alert('You have completed this course.'); window.location.href = 'home.php';</script>";
     }
 
     // Refresh page to reflect changes

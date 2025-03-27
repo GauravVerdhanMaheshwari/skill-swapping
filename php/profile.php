@@ -27,7 +27,7 @@ if (!$result || mysqli_num_rows($result) == 0) {
     exit;
 }
 
-$query = "SELECT Bio FROM user WHERE UID = '$teacherID'";
+$query = "SELECT bio FROM bio WHERE UID = '$teacherID'";
 $bio = mysqli_query($connect, $query);
 
 $row = mysqli_fetch_assoc($result);
@@ -59,6 +59,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/profile.css">
     <link rel="icon" type="image/x-icon" href="../image/logo.png">
+    
 </head>
 
 <body>
