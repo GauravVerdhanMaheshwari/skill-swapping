@@ -27,3 +27,17 @@
 .profileDetails p:last-child {
   margin-bottom: 0;
 }
+
+.feedbackButton {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #ff4d4d;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.feedbackButton:hover {
+  background-color: #cc0000;
+}

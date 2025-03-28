@@ -69,8 +69,15 @@ if (!isset($_SESSION['uid']) && !isset($_SESSION['login'])) {
             $sql = "SELECT * FROM courses WHERE UID = " . $_SESSION['uid'];
             $result = mysqli_query($connect, $sql);
 
+            
+
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
+                    if(htmlspecialchars($row['Status'])){
+                        $status = "Enrolled By None";
+                    }else{
+                        $status = "Enrolled By Someone";
+                    }
                     echo "
                     <tr>
                         <td>" . htmlspecialchars($row['Title']) . "</td>
@@ -78,7 +85,7 @@ if (!isset($_SESSION['uid']) && !isset($_SESSION['login'])) {
                         <td>" . htmlspecialchars($row['SkillNeeded']) . "</td>
                         <td>" . htmlspecialchars($row['SkillTeaching']) . "</td>
                         <td>" . htmlspecialchars($row['Price']) . "</td>
-                        <td>" . htmlspecialchars($row['Status']) . "</td>
+                        <td>" . htmlspecialchars($status). "</td>
                         <td><a href='view_course.php?id=" . urlencode($row['Cid']) . "' class='view-btn'>View</a></td>
                         <td><a href='delete_course.php?id=" . urlencode($row['Cid']) . "' class='delete-btn' onclick='return confirm(\"Are you sure you want to delete this courses?\")'>Delete</a></td>
                     </tr>";

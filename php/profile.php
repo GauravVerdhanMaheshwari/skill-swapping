@@ -49,6 +49,8 @@ if ($result && mysqli_num_rows($result) > 0) {
 }
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,7 +61,6 @@ if ($result && mysqli_num_rows($result) > 0) {
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/profile.css">
     <link rel="icon" type="image/x-icon" href="../image/logo.png">
-    
 </head>
 
 <body>
@@ -67,10 +68,16 @@ if ($result && mysqli_num_rows($result) > 0) {
     include 'header.php';
     customHeader();
     ?>
+    
     <div class="profileDetails">
         <h1><?php echo htmlspecialchars($teacherName); ?>'s Profile</h1>
         <p><strong>Bio:</strong> <?php echo htmlspecialchars($teacherBio); ?></p>
         <p><strong>Skills:</strong> <?php echo htmlspecialchars($teacherSkills); ?></p>
+
+        <!-- Feedback & Report Button -->
+        <a href="feedback_report.php?uid=<?php echo urlencode($teacherID); ?>" class="feedbackButton">
+            Give Feedback / Report User
+        </a>
     </div>
 </body>
 

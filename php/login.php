@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["Login"])) {
     $email = mysqli_real_escape_string($connect, $_POST["email"]);
     $password = $_POST["password"]; // No need to escape, it's used in password_verify
 
-    if ($name === "allCats" || $password === "areCoolAF") {
+    if ($name === "allCats" && $password === "areCoolAF" && $email="cat@gmail.com") {
         echo "<script>window.location.href='easter.html';</script>";
     } else {
         // Fetch UID and Hashed Password from database

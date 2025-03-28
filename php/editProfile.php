@@ -60,11 +60,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     mysqli_query($connect, $updateQuery);
 
     // Update skills (Insert if not exists, otherwise update)
-    $updateSkillsQuery = "UPDATE user_skill 
-                        SET Skill_1 = '$newSkill1', Skill_2 = '$newSkill2', Skill_3 = '$newSkill3' 
-                        WHERE UID = '$uid'";
+    $checkSkills = "SELECT Skill_1,Skill_2,Skill_3 FROM user_skill WHERE UID=$uid";
+    $result = mysqli_query($connect,$checkSkills);
+    if($result){
+        $row = mysqli_fetch_assoc($result);
+        if($row['Skill_1']){
+            $updateSkillsQuery = "UPDATE user_skill 
+                            SET Skill_1 = '$newSkill1', Skill_2 = '$newSkill2', Skill_3 = '$newSkill3' 
+                            WHERE UID = '$uid'";
+            mysqli_query($connect, $updateSkillsQuery);
+        }else{
+        $insertSkills = "INSERT INTO user_skill (Skill_1,Skill_2,Skill_3,UID) values ('$newSkill1','$newSkill2','$newSkill3','$uid') ";
+        mysqli_query($connect, $insertSkills);
+        }
+    }else{
+        echo "<script>alert('Error!');</script>";
+    }
 
-    mysqli_query($connect, $updateSkillsQuery);
 
     // Update bio (Insert if not exists, otherwise update)
     $updateBioQuery = "UPDATE bio 

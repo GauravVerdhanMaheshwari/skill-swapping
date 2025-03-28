@@ -59,7 +59,7 @@ $userID = $_SESSION['uid']; // Logged-in user's ID
                 echo "<p class='courseName'>$courseName</p>";
                 echo "<p class='courseDescription'>$courseDescription</p>";
                 echo "<p class='coursePrice'>Price: ₹$coursePrice</p>";
-                echo "<a href='courseContent.php?courseID=$courseID' class='courseLink continueLink'>Continue Course</a>"; // Redirects to course content
+                echo "<a href='courseContent.php?courseID=$courseID' class='courseLink continueLink'>Continue Course</a>";
                 echo "</div>";
             }
         }
@@ -72,7 +72,8 @@ $userID = $_SESSION['uid']; // Logged-in user's ID
         <h2 style="margin: 20px;">Available Courses</h2>
         <?php
         $query = "SELECT Cid, Title, Description, Price FROM courses 
-                  WHERE Status = 1 AND Cid NOT IN 
+                  WHERE Status = 1 AND UID != '$userID' 
+                  AND Cid NOT IN 
                   (SELECT CID FROM enroll WHERE Maker = '$userID')";  // Exclude courses created by the logged-in user
         
         $result = mysqli_query($connect, $query);
@@ -98,7 +99,6 @@ $userID = $_SESSION['uid']; // Logged-in user's ID
         }
         ?>
     </div>
-
 
 </body>
 
